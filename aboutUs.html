@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="master.css">
+
+    <title>StudyX</title>
+  </head>
+  <body>
+
+    <div class="header" style="background-color: #427aa1">
+      <img src="images/logo.png" alt="header">
+    </div>
+
+    <div id="navbar">
+      <a class="active" href="index.html">Home</a>
+      <a href="game.html">Game</a>
+      <a class="idil" href="aboutUs.html">About Us</a>
+      <a href="courses.html">Courses</a>
+    </div>
+
+
+    <div class="content">
+      <div class="main">
+        <h2>StudyX Gallery</h2>
+        <div class="row">
+          <div class="column">
+            <img src="images/1.jpg" alt="." style="width:100%" onclick="myFunction(this);">
+          </div>
+          <div class="column">
+            <img src="images/2.jpg" alt="." style="width:100%" onclick="myFunction(this);">
+          </div>
+          <div class="column">
+            <img src="images/3.jpg" alt="." style="width:100%" onclick="myFunction(this);">
+          </div>
+          <div class="column">
+            <img src="images/4.jpg" alt="." style="width:100%" onclick="myFunction(this);">
+          </div>
+        </div>
+
+        <div class="container">
+          <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+          <img id="expandedImg" style="width:100%" alt=".">
+          <div id="imgtext"></div>
+        </div>
+      </div>
+        <br>
+        <div class="main">
+          <h2>Devolper Team</h2>
+          <p>Ata Turkoglu</p>
+          <p>Idil Zehra Tatar</p>
+          <p>Kavindu Hansajith</p>
+        </div>
+        <br>
+        <div class="main">
+          <h1>Forms</h1>
+          <form method="post">
+            <label>Name:</label>
+            <input type="text" name="name" required/>
+            <br><br>
+            <label>Password:</label>
+            <input type="password" required/>
+            <br><br>
+            <label>Phone Number:</label>
+            <input type="number" required/>
+            <br><br>
+            <label>Mail:</label>
+            <input type="email" required/>
+            <br><br>
+            <label>Favorite color:</label>
+            <input type="color" required/>
+            <p>Which is the better mode of transportation for you?</p>
+            <label>Car</label>
+            <input name="toppings" type="radio" value="Ketchup" required/>
+            <br>
+            <label>Luas</label>
+            <input name="toppings" type="radio" value="Mustard" required/>
+            <br>
+            <label>Bus</label>
+            <input name="toppings" type="radio" value="Onions" required/>
+            <p>Which ones do you want.</p>
+            <label>Sugar</label>
+            <input name="toppings" type="checkbox" value="Ketchup" />
+            <br>
+            <label>Tea</label>
+            <input name="toppings" type="checkbox" value="Mustard" />
+            <br>
+            <label>Chocolate</label>
+            <input name="toppings" type="checkbox" value="Onions" />
+            <br>
+            <br>
+            <label>Which of the following would you like in your life?</label>
+            <select name="toppings">
+              <option>Money</option>
+              <option>Happiness</option>
+              <option>Peace</option>
+            </select>
+            <br>
+            <br>
+            <input type="submit" value="Submit">
+            <br>
+            <input type="reset" value="Reset">
+          </form>
+        </div>
+      </div>
+
+      <footer>
+        <img src="images/footer.png" alt="footer">
+      </footer>
+
+    <script>
+    //this for tab gallery
+      function myFunction(imgs) {
+        var expandImg = document.getElementById("expandedImg");
+        var imgText = document.getElementById("imgtext");
+        expandImg.src = imgs.src;
+        imgText.innerHTML = imgs.alt;
+        expandImg.parentElement.style.display = "block";
+      }
+//this for sticky header
+      window.onscroll = function() {ata()};
+
+      var navbar = document.getElementById("navbar");
+      var sticky = navbar.offsetTop;
+
+      function ata() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      }
+    </script>
+
+  </body>
+
+</html>

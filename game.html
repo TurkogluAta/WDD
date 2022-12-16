@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Secular+One&display=swap" rel="stylesheet">
+        <title>StudyX</title>
+        <link rel="stylesheet" href="master.css">
+    </head>
+    <body>
+
+      <div class="header" style="background-color: #427aa1">
+        <img src="images/logo.png" alt="header">
+      </div>
+
+      <div id="navbar">
+        <a class="active" href="index.html">Home</a>
+        <a href="game.html">Game</a>
+        <a class="idil" href="aboutUs.html">About Us</a>
+        <a href="courses.html">Courses</a>
+      </div>
+
+      <div class="content">
+        <div class="main">
+          <h2>Minesweeper</h2>
+          <p>Clicking a square which doesn't have a mine reveals the number of neighbouring squares containing mines. By a process of deduction, elimination and guesswork, this information can be used to work out where all the mines are.</p>
+        </div>
+          <br>
+          <br>
+        <div class="main">
+          <h2>Minesweeper</h2>
+          <table id=grid>
+          </table>
+          <br>
+          <BUTTON onclick="generateGrid();">Play Again</BUTTON>
+          </div>
+        </div>
+
+        <footer>
+          <img src="images/footer.png" alt="footer">
+        </footer>
+
+      <script>
+
+//this for sticky header
+      window.onscroll = function() {ata()};
+
+      var navbar = document.getElementById("navbar");
+      var sticky = navbar.offsetTop;
+
+      function ata() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      }
+
+        var grid = document.getElementById("grid");
+        var testMode = false;
+        generateGrid();
+
+        function generateGrid() {
+        //generate 10 by 10 grid
+        grid.innerHTML="";
+        for (var i=0; i<10; i++) {
+          row = grid.insertRow(i);
+          for (var j=0; j<10; j++) {
+            cell = row.insertCell(j);
+            cell.onclick = function() { clickCell(this); };
+            var mine = document.createAttribute("data-mine");
+            mine.value = "false";
+            cell.setAttributeNode(mine);
+          }
+        }
+        addMines();
+        }
+
+        function addMines() {
+        //Add mines randomly
+        for (var i=0; i<20; i++) {
+          var row = Math.floor(Math.random() * 10);
+          var col = Math.floor(Math.random() * 10);
+          var cell = grid.rows[row].cells[col];
+          cell.setAttribute("data-mine","true");
+          if (testMode) cell.innerHTML="X";
+        }
+        }
+
+        function revealMines() {
+          //Highlight all mines in red
+          for (var i=0; i<10; i++) {
+            for(var j=0; j<10; j++) {
+              var cell = grid.rows[i].cells[j];
+              if (cell.getAttribute("data-mine")=="true") cell.className="mine";
+            }
+          }
+        }
+
+        function checkLevelCompletion() {
+        var levelComplete = true;
+          for (var i=0; i<10; i++) {
+            for(var j=0; j<10; j++) {
+              if ((grid.rows[i].cells[j].getAttribute("data-mine")=="false") && (grid.rows[i].cells[j].innerHTML=="")) levelComplete=false;
+            }
+        }
+        if (levelComplete) {
+          alert("You Win!");
+          revealMines();
+        }
+        }
+
+        function clickCell(cell) {
+        //Check if the end-user clicked on a mine
+        if (cell.getAttribute("data-mine")=="true") {
+          revealMines();
+          alert("Game Over");
+        } else {
+          cell.className="clicked";
+          //Count and display the number of adjacent mines
+          var mineCount=0;
+          var cellRow = cell.parentNode.rowIndex;
+          var cellCol = cell.cellIndex;
+          //alert(cellRow + " " + cellCol);
+          for (var i=Math.max(cellRow-1,0); i<=Math.min(cellRow+1,9); i++) {
+            for(var j=Math.max(cellCol-1,0); j<=Math.min(cellCol+1,9); j++) {
+              if (grid.rows[i].cells[j].getAttribute("data-mine")=="true") mineCount++;
+            }
+          }
+          cell.innerHTML=mineCount;
+          if (mineCount==0) {
+            //Reveal all adjacent cells as they do not have a mine
+            for (var i=Math.max(cellRow-1,0); i<=Math.min(cellRow+1,9); i++) {
+              for(var j=Math.max(cellCol-1,0); j<=Math.min(cellCol+1,9); j++) {
+                //Recursive Call
+                if (grid.rows[i].cells[j].innerHTML=="") clickCell(grid.rows[i].cells[j]);
+              }
+            }
+          }
+          checkLevelCompletion();
+        }
+        }
+      </script>
+
+    </body>
+</html>

@@ -1,0 +1,160 @@
+*{
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("images/bg.png");
+}
+.header {
+  text-align: center;
+}
+.header img{
+  height: 300px;
+}
+footer img{
+  height: 100px;
+}
+#navbar {
+  overflow: hidden;
+  background-color: #ebebeb;
+}
+#navbar a {
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+}
+#navbar a:hover {
+  background-color: #ced3dc;
+  color: white;
+}
+#navbar a.active {
+  background-color: #68A4CE;
+  color: #ffffff;
+  float: left;
+}
+.content {
+  padding: 60px;
+  text-align: center;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.sticky + .content {
+  padding-top: 120px;
+}
+.lilo{
+  height: 300px;
+  width: 300px;
+padding: 10px;
+border-color: #ebebeb;
+border-style: solid;
+border-width: 10px;
+}
+.main{
+  padding: 15px;
+  border-radius: 50px;
+  background-color: #ced3dc;
+  font-size: 20px;
+  border-color: #ebebeb;
+  border-style: solid;
+  border-width: 10px;
+}
+.main2{
+  padding: 15px;
+  border-radius: 50px;
+  background-color: #ffffff;
+  font-size: 20px;
+  border-color: #ebebeb;
+  border-style: solid;
+  border-width: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: #427aa1;
+  color: #ced3dc;
+}
+#grid {
+margin-left: auto;
+margin-right: auto;
+}
+
+#grid TR TD{
+border:1px solid white;
+background: #999999;
+width: 16px;
+height: 16px;
+text-align: center;
+}
+
+#grid TR TD.clicked {
+  background: green;
+}
+h2{
+  font-family: 'Secular One', sans-serif;
+}
+h4{
+  font-family: 'Secular One', sans-serif;
+}
+p{
+  font-family: 'Playfair Display', serif;
+}
+/*Four equal columns */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+.column img {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* expanding image */
+.container {
+  position: relative;
+  display: none;
+}
+
+/* image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: #427aa1;
+  font-size: 30px;
+  font-family: 'Secular One', sans-serif;
+}
+
+/* Closable button */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+  .float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
